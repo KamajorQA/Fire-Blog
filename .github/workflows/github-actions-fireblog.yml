@@ -1,0 +1,23 @@
+name: GitHub Actions Fire Blog
+run-name: ${{ github.actor }} is flying to the moon with GitHub Actions 🚀
+on: [push]
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+      node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Staring Node.js ${{ matrix.node-version }}
+        uses: action/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install modules
+        run: npm install
+      - name: lint fix
+        run: npm run lint:fix
+      - name: lint code check
+        run: npm run lint
+      - name: build project
+        run: npm run build
