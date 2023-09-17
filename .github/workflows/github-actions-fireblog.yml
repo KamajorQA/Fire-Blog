@@ -4,15 +4,12 @@ on: [push]
 jobs:
   init:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-      node: [18]
     steps:
       - uses: actions/checkout@v3
-      - name: Staring Node.js ${{ matrix.node }}
+      - name: Starting Node.js 18
         uses: action/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 18
       - name: install modules
         run: npm install
       - name: lint fix
