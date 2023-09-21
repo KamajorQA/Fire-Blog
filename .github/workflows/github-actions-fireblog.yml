@@ -1,6 +1,10 @@
 name: GitHub Actions Fire Blog
-run-name: ${{ github.actor }} is flying to the moon with GitHub Actions 🚀
-on: [push]
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
 jobs:
   init:
     runs-on: ubuntu-latest

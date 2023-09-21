@@ -1,6 +1,33 @@
+@font-face {
+  font-family: 'Great Vibes';
+  src:
+    local('Great Vibes'),
+    url(https://fonts.gstatic.com/s/greatvibes/v18/RWmMoKWR9v4ksMfaWd_JN9XFiaQ.woff2)
+      format('woff2');
+}
+
+/* cyrillic */
+@font-face {
+  font-family: 'Marck Script';
+  src:
+    local('Marck Script'),
+    url(https://fonts.gstatic.com/s/marckscript/v20/nwpTtK2oNgBA3Or78gapdwuyzCg_WMM.woff2)
+      format('woff2');
+}
+
+/* latin */
+@font-face {
+  font-family: 'Marck Script';
+
+  src:
+    local('Marck Script'),
+    url(https://fonts.gstatic.com/s/marckscript/v20/nwpTtK2oNgBA3Or78gapdwuyyCg_.woff2)
+      format('woff2');
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Marck Script', 'Great Vibes', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
