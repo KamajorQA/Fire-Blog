@@ -9,14 +9,16 @@ function useControlNavigation() {
 
   const highlightActiveLink = () => {
     switch (selectedKey) {
-      case '/':
-        return ['/'];
-      case '/contacts':
-        return ['contacts'];
-      case '/favorites':
-        return ['favorites'];
-      default:
-        return ['not found'];
+    case '/':
+      return ['/'];
+    case '/createpost':
+      return ['createpost'];
+    case '/contacts':
+      return ['contacts'];
+    case '/login':
+      return ['login'];
+    default:
+      return ['not found'];
     }
   };
 

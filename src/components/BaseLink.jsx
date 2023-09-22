@@ -1,11 +1,4 @@
-import { ReactNode } from 'react';
-
-interface IBaseLink {
-  href: string;
-  children: ReactNode;
-}
-
-function BaseLink({ href, children }: IBaseLink) {
+function BaseLink({ href, children }) {
   return (
     <a href={href} target="_blank" rel="noreferrer">
       {children}

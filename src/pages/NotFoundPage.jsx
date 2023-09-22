@@ -1,10 +1,13 @@
-import { Image } from 'antd';
+import { Image, Button } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 
 import Vincent from '../assets/img/Vincent.jpg';
 import { TitleComponent } from '../components/TitleComponent';
+import { useControlNavigation } from '../hooks/useControlNavigation';
 
 function NotFoundPage() {
+  const { goHome } = useControlNavigation();
+
   return (
     <Content
       style={{
@@ -25,6 +28,15 @@ function NotFoundPage() {
         >
           Looks like this page is no longer of this world.
         </h3>
+        <Button
+          type="primary"
+          style={{
+            fontFamily: 'Great Vibes',
+          }}
+          onClick={goHome}
+        >
+          Go back to Home
+        </Button>
       </section>
     </Content>
   );

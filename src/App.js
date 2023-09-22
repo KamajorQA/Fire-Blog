@@ -1,8 +1,10 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { MainLayout } from './layouts/MainLayout';
 import { HomePage } from './pages/HomePage';
+import { CreatePostPage } from './pages/CreatePostPage';
 import { ContactsPage } from './pages/ContactsPage';
+import { LoginPage } from './pages/LoginPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import './App.css';
 
@@ -12,9 +14,11 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="createpost" element={<CreatePostPage />} />
           <Route path="contacts" element={<ContactsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Router>
   );
