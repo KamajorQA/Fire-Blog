@@ -1,11 +1,13 @@
-import { Button, Layout } from 'antd';
+import { Button, Col, Layout, Row } from 'antd';
 
 import { TitleComponent } from '../components/TitleComponent';
 import { useControlNavigation } from '../hooks/useControlNavigation';
+import { NewPostForm } from '../components/NewPostForm';
 const { Content } = Layout;
 
 function CreatePostPage() {
   const { goHome } = useControlNavigation();
+
   return (
     <Content
       style={{
@@ -14,7 +16,13 @@ function CreatePostPage() {
     >
       <TitleComponent level={2}>Type your new Post</TitleComponent>
 
-      <main className="contentWrapper">Create Post</main>
+      <main className="contentWrapper">
+        <Row justify="center" gutter={{ xs: 4, sm: 8, md: 12, lg: 16 }}>
+          <Col span={12}>
+            <NewPostForm />
+          </Col>
+        </Row>
+      </main>
       <Button
         type="primary"
         style={{
@@ -22,7 +30,7 @@ function CreatePostPage() {
         }}
         onClick={goHome}
       >
-        Go back to Home
+        &#10094; Go back to Home
       </Button>
     </Content>
   );

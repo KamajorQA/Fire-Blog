@@ -25,7 +25,9 @@ function LoginPage() {
         );
         navigate('/');
       })
-      .catch((error) => alert(error));
+      .catch((error) => {
+        throw new Error(error.message);
+      });
   };
 
   const goHome = () => navigate('/');

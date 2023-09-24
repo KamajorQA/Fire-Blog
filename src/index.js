@@ -16,6 +16,11 @@ root.render(
           colorPrimary: '#e84d1a',
           fontFamily: ['Marck Script', 'Great Vibes'],
         },
+        components: {
+          Form: {
+            itemMarginBottom: 12,
+          },
+        },
       }}
     >
       <Provider store={store}>

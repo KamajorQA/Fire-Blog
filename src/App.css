@@ -52,6 +52,10 @@
   max-height: 1.5rem;
 }
 
+.form label {
+  align-items: normal !important;
+}
+
 @media (max-width: 768px) {
   .mobileAdaptive {
     flex-direction: column;
