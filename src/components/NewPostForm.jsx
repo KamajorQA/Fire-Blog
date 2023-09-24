@@ -46,10 +46,8 @@ function NewPostForm() {
   const handlePostSubmit = (values) => {
     if (values.imgUrl?.length === 0 || values.imgUrl === undefined) {
       const arrengedValues = { ...values, imgUrl: imgFiller };
-      console.log(arrengedValues);
       createPost(arrengedValues);
     } else {
-      console.log(values);
       createPost(values);
     }
     form.resetFields();

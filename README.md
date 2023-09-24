@@ -48,6 +48,7 @@ npm run lint:fix
 - [x] Ant Design;
 - [x] react-icons;
 - [x] prettier;
+- [x] react-error-boundary;
 
 React Router использован для навигации между страницами **Home** / **Contacts** / **Login** / **Not Found**
 Рендер вложенных страниц реализован через компонент `<Outlet />` библиотеки `react-router-dom`
