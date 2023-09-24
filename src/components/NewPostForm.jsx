@@ -1,8 +1,36 @@
 import { Button, Form, Input, message } from 'antd';
+import { addDoc, collection } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+
+import { db } from '../firebase';
+import { useUserInfo } from '../hooks/useUserInfo';
 const { TextArea } = Input;
 
 function NewPostForm() {
   const [form] = Form.useForm();
+  const { displayName, uid } = useUserInfo();
+  const postsCollectionRef = collection(db, 'posts');
+  const navigate = useNavigate();
+
+  const createPost = async ({ postTitle, imgUrl, postContent }) => {
+    try {
+      await addDoc(postsCollectionRef, {
+        postTitle,
+        imgUrl,
+        postContent,
+        author: {
+          name: displayName,
+          uid,
+        },
+      });
+      message.success('submit success!');
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
+    } catch (error) {
+      message.error(error.message);
+    }
+  };
 
   const imgFiller = 'https://svgsilh.com/svg/1479775.svg';
 
@@ -19,10 +47,10 @@ function NewPostForm() {
     if (values.imgUrl?.length === 0 || values.imgUrl === undefined) {
       const arrengedValues = { ...values, imgUrl: imgFiller };
       console.log(arrengedValues);
-      message.success('submit success!');
+      createPost(arrengedValues);
     } else {
       console.log(values);
-      message.success('submit success!');
+      createPost(values);
     }
     form.resetFields();
   };

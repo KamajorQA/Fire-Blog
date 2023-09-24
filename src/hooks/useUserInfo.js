@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
 
 function useUserInfo() {
-  const { email, displayName, id } = useSelector((state) => state.userReducer);
+  const { email, displayName, uid } = useSelector((state) => state.userReducer);
 
   return {
     // isAuthenticated: !!email,
     email,
     displayName,
-    id,
+    uid,
   };
 }
 
