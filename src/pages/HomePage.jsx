@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Button, Col, Layout, Row } from 'antd';
-import { getDocs, collection } from 'firebase/firestore';
+import { Button, FloatButton, Layout } from 'antd';
+import {
+  getDocs,
+  collection,
+  onSnapshot,
+  doc,
+  deleteDoc,
+} from 'firebase/firestore';
+import { AiOutlineVerticalAlignTop } from 'react-icons/ai';
 
 import { db } from '../firebase';
 import { TitleComponent } from '../components/TitleComponent';
@@ -11,16 +18,37 @@ function HomePage() {
   const [postsList, setPostsList] = useState([]);
   const postsCollectionRef = collection(db, 'posts');
 
-  useEffect(() => {
-    const getPosts = async () => {
-      const data = await getDocs(postsCollectionRef);
-      // console.log(data);
-      setPostsList(
-        data.docs.map((document) => ({ ...document.data(), id: document.id }))
-      );
-    };
+  // useEffect(() => {
+  //   onSnapshot(postsCollectionRef, (snapshot) => {
+  //     console.log(snapshot.docs);
+  //     const data = snapshot.docs.map((doc) => {
+  //       return {
+  //         id: doc.id,
+  //         ...doc.data(),
+  //       };
+  //     });
+  //     console.log(data);
+  //     setPostsList(data);
+  //   });
+  // }, []);
+
+  const getPosts = async () => {
+    const data = await getDocs(postsCollectionRef);
+    console.log(data);
+    setPostsList(
+      data.docs.map((document) => ({ ...document.data(), id: document.id }))
+    );
+  };
+
+  const handleDeletePost = async (id) => {
+    const postDoc = doc(db, 'posts', id);
+    await deleteDoc(postDoc);
     getPosts();
-  });
+  };
+
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   return (
     <Content
@@ -30,16 +58,28 @@ function HomePage() {
     >
       <TitleComponent level={2}>Blog Posts</TitleComponent>
 
-      <main className="contentWrapper">
-        <h1>Съешь еще этих мягких французских булок</h1>
-        <Row justify="center" gutter={{ xs: 4, sm: 8, md: 12, lg: 16 }}>
-          <Col span={12}>
-            {postsList.map((post) => {
-              return <PostCard {...post} key={post.id} />;
-            })}
-          </Col>
-        </Row>
+      <main
+        className="contentWrapper"
+        style={{
+          display: 'flex',
+          gap: '1rem',
+          alignItems: 'center',
+        }}
+      >
+        {postsList.map((post) => {
+          return (
+            <PostCard
+              {...post}
+              key={post.id}
+              handleDeletePost={handleDeletePost}
+            />
+          );
+        })}
       </main>
+      <FloatButton.BackTop
+        icon={<AiOutlineVerticalAlignTop />}
+        tooltip={<div>Scroll back to top</div>}
+      />
       <Button
         type="primary"
         style={{
