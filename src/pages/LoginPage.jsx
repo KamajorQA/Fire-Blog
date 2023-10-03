@@ -30,8 +30,6 @@ function LoginPage() {
       });
   };
 
-  const goHome = () => navigate('/');
-
   return (
     <Content
       style={{
@@ -52,15 +50,6 @@ function LoginPage() {
           Sign in with Google
         </Button>
       </main>
-      <Button
-        type="primary"
-        style={{
-          fontFamily: 'Great Vibes',
-        }}
-        onClick={goHome}
-      >
-        Go to main Page
-      </Button>
     </Content>
   );
 }

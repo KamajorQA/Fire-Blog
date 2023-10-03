@@ -50,7 +50,7 @@ npm run lint:fix
 - [x] prettier;
 - [x] react-error-boundary;
 
-React Router использован для навигации между страницами **Home** / **Contacts** / **Login** / **Not Found**
+React Router использован для навигации между страницами **Home** / **User Info** / **Create Post** / **Contacts** / **Login** / **Not Found**
 Рендер вложенных страниц реализован через компонент `<Outlet />` библиотеки `react-router-dom`
 Также реализовано управление неавторизованным пользователем через хук `useNavigate`.
 

@@ -1,17 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Button, FloatButton, Layout } from 'antd';
-import {
-  getDocs,
-  collection,
-  onSnapshot,
-  doc,
-  deleteDoc,
-} from 'firebase/firestore';
+import { FloatButton, Layout, Pagination } from 'antd';
+import { getDocs, collection, doc, deleteDoc } from 'firebase/firestore';
 import { AiOutlineVerticalAlignTop } from 'react-icons/ai';
 
 import { db } from '../firebase';
 import { TitleComponent } from '../components/TitleComponent';
-import PostCard from '../components/PostCard';
+import { PostCard } from '../components/PostCard';
 const { Content } = Layout;
 
 function HomePage() {
@@ -34,7 +28,6 @@ function HomePage() {
 
   const getPosts = async () => {
     const data = await getDocs(postsCollectionRef);
-    console.log(data);
     setPostsList(
       data.docs.map((document) => ({ ...document.data(), id: document.id }))
     );
@@ -48,6 +41,7 @@ function HomePage() {
 
   useEffect(() => {
     getPosts();
+    /* eslint-disable react-hooks/exhaustive-deps*/
   }, []);
 
   return (
@@ -62,32 +56,39 @@ function HomePage() {
         className="contentWrapper"
         style={{
           display: 'flex',
-          gap: '1rem',
+          // gap: '1rem',
           alignItems: 'center',
         }}
       >
-        {postsList.map((post) => {
-          return (
-            <PostCard
-              {...post}
-              key={post.id}
-              handleDeletePost={handleDeletePost}
-            />
-          );
-        })}
+        <Pagination
+          // className="contentWrapper"
+          // style={{
+          //   display: 'flex',
+          //   gap: '1rem',
+          //   alignItems: 'center',
+          // }}
+          showSizeChanger
+          showQuickJumper
+          defaultPageSize={3}
+          pageSizeOptions={[3, 5, 10, 25]}
+        />
+        {postsList &&
+          !!postsList.length &&
+          postsList.map((post) => {
+            return (
+              <PostCard
+                {...post}
+                key={post.id}
+                handleDeletePost={handleDeletePost}
+              />
+            );
+          })}
+        {/* </Pagination> */}
       </main>
       <FloatButton.BackTop
         icon={<AiOutlineVerticalAlignTop />}
         tooltip={<div>Scroll back to top</div>}
       />
-      <Button
-        type="primary"
-        style={{
-          fontFamily: 'Great Vibes',
-        }}
-      >
-        Check color & font
-      </Button>
     </Content>
   );
 }

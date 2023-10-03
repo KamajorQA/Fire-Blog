@@ -2,7 +2,7 @@ import { Menu } from 'antd';
 import { GiCampfire } from 'react-icons/gi';
 import { SiSparkpost } from 'react-icons/si';
 import { IoIosContacts } from 'react-icons/io';
-import { SiMariadbfoundation } from 'react-icons/si';
+import { BiSolidUserDetail } from 'react-icons/bi';
 
 import { useControlNavigation } from '../hooks/useControlNavigation';
 
@@ -32,9 +32,9 @@ function MenuComponent() {
           icon: <IoIosContacts />,
         },
         {
-          key: 'login',
-          label: 'Login',
-          icon: <SiMariadbfoundation />,
+          key: 'userinfo',
+          label: 'User Info Page',
+          icon: <BiSolidUserDetail />,
         },
       ]}
       onClick={goToChosenPage}

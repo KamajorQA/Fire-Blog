@@ -15,8 +15,8 @@ function useControlNavigation() {
       return ['createpost'];
     case '/contacts':
       return ['contacts'];
-    case '/login':
-      return ['login'];
+    case '/userinfo':
+      return ['userinfo'];
     default:
       return ['not found'];
     }
