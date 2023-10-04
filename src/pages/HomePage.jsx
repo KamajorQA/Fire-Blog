@@ -9,22 +9,24 @@ import { PostCard } from '../components/PostCard';
 const { Content } = Layout;
 
 function HomePage() {
-  const [postsList, setPostsList] = useState([]);
   const postsCollectionRef = collection(db, 'posts');
+  const [postsList, setPostsList] = useState([]);
 
-  // useEffect(() => {
-  //   onSnapshot(postsCollectionRef, (snapshot) => {
-  //     console.log(snapshot.docs);
-  //     const data = snapshot.docs.map((doc) => {
-  //       return {
-  //         id: doc.id,
-  //         ...doc.data(),
-  //       };
-  //     });
-  //     console.log(data);
-  //     setPostsList(data);
-  //   });
-  // }, []);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(3);
+
+  const visiblePosts = postsList.slice(
+    (currentPage - 1) * postsPerPage,
+    postsPerPage * currentPage
+  );
+
+  const handlePageChange = (newPageNumber, pageSize) => {
+    setCurrentPage(newPageNumber);
+  };
+
+  const handlePageSizeChange = (currentPage, pageSize) => {
+    setPostsPerPage(pageSize);
+  };
 
   const getPosts = async () => {
     const data = await getDocs(postsCollectionRef);
@@ -56,25 +58,27 @@ function HomePage() {
         className="contentWrapper"
         style={{
           display: 'flex',
-          // gap: '1rem',
           alignItems: 'center',
         }}
       >
         <Pagination
-          // className="contentWrapper"
-          // style={{
-          //   display: 'flex',
-          //   gap: '1rem',
-          //   alignItems: 'center',
-          // }}
           showSizeChanger
           showQuickJumper
+          defaultCurrent={1}
+          current={currentPage}
           defaultPageSize={3}
+          pageSize={postsPerPage}
           pageSizeOptions={[3, 5, 10, 25]}
+          total={postsList.length}
+          onChange={handlePageChange}
+          onShowSizeChange={handlePageSizeChange}
+          style={{
+            marginBottom: '1rem',
+          }}
         />
-        {postsList &&
-          !!postsList.length &&
-          postsList.map((post) => {
+        {visiblePosts &&
+          !!visiblePosts.length &&
+          visiblePosts.map((post) => {
             return (
               <PostCard
                 {...post}
@@ -83,7 +87,6 @@ function HomePage() {
               />
             );
           })}
-        {/* </Pagination> */}
       </main>
       <FloatButton.BackTop
         icon={<AiOutlineVerticalAlignTop />}
