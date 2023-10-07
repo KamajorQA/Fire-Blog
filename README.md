@@ -63,8 +63,13 @@ npm run lint:fix
 
 ### Реализовано базовое тестирование.
 
-Написаны базовые тесты для Redux-слайса `userSlice` (тестируется сам редьюсер и синхронные экшны):  
+1. Написаны базовые тесты для Redux-слайса `userSlice` (тестируется сам редьюсер и синхронные экшны):
+
 ![Redux tests](./src/assets/img/ReduxTests.PNG)
+
+2.  [**Unit-тесты**](https://github.com/KamajorQA/Fire-Blog/tree/master/src/components/tests) с **jest-моками** для компонентов.
+
+3.  Тесты для кастомных хуков `useUserInfo` и `useControlNavigation`.
 
 ### Дополнительные пояснения:
 
