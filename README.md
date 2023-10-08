@@ -69,7 +69,7 @@ npm run lint:fix
 
 2.  [**Unit-тесты**](https://github.com/KamajorQA/Fire-Blog/tree/master/src/components/tests) с **jest-моками** для компонентов.
 
-3.  Тесты для кастомных хуков `useUserInfo` и `useControlNavigation`.
+3.  [**Тесты**](https://github.com/KamajorQA/Fire-Blog/tree/master/src/hooks/tests) для **кастомных хуков** `useUserInfo` и `useControlNavigation`.
 
 ### Дополнительные пояснения:
 

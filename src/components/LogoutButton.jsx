@@ -19,14 +19,15 @@ function LogoutButton() {
   };
 
   return (
-    <RiLogoutCircleLine
-      className="iconButton"
-      style={{
-        fontSize: '1.2rem',
-        cursor: 'pointer',
-      }}
-      onClick={signUserOut}
-    />
+    <div className="flexCenter" role="button" onClick={signUserOut}>
+      <RiLogoutCircleLine
+        className="iconButton"
+        style={{
+          fontSize: '1.2rem',
+          cursor: 'pointer',
+        }}
+      />
+    </div>
   );
 }
 
